@@ -1,0 +1,56 @@
+schema_version: aesthetic-contract-v2
+status: proposed
+brief:
+  audience: "多窗口工作用户"
+  context: "真实截图中整段请求占据三四行，无法快速判断事项"
+  primary_job: "用公司或项目及具体对象片段识别任务"
+  secondary_job: "核对完整原名并打开原任务"
+  artifact_type: "任务浮窗标题要点修复"
+  medium: app
+  delivery_environment: "Windows Tauri；保留390x560及右下角托盘行为"
+  intended_first_impression: "事项清单而非聊天记录列表"
+content:
+  truth_source: "用户提供的真实截图标题及原始title；既有来源绑定business"
+  roles:
+    claim: ["可追溯的标题要点，不是新业务事实"]
+    evidence: ["原始标题可展开"]
+    context: ["已提供公司项目分区"]
+    action: ["展开原名", "打开任务"]
+    navigation: ["原threadId"]
+    state: ["自动摘录/原文片段区别", "步骤未同步"]
+    identity: ["手边任务A配色"]
+    source: ["每个片段对应原文位置"]
+  missing_material: ["实时结构化步骤", "长标题中可能未包含的公司与对象"]
+  prohibited_fabrication: true
+attention:
+  primary: "短事项名称"
+  secondary: "已知期限及摘录来源入口"
+  tertiary: "全局连接/步骤限制"
+  reading_or_action_order: ["短名", "期限", "必要时原文", "打开任务"]
+visual_grammar:
+  family_or_hybrid: "来源可核对的短事项清单"
+  rationale: "用户两次反馈未精简，必须覆盖没有标签的真实长标题"
+  composition: {decision: "保留浮窗大小；长标题变短要点；原名默认收起", rationale: "让工作内容成为首屏主体"}
+  typography: {decision: "继承14px中文任务名；摘录来源11px；长原文正常换行", rationale: "避免缩小字体假装精简"}
+  density: {decision: "自动提取最多4个原文片段、约32字；默认不铺全文", rationale: "区分事项同时提高首屏覆盖；未知情况明确回退"}
+  color: {decision: "保留中性底与绿色交互；不新增语义状态颜色", rationale: "标题处理不改变业务状态"}
+  geometry: {decision: "沿用分隔线；原文使用原生details/summary", rationale: "提供键盘可达的轻量核对，不新增卡片层"}
+  imagery: {decision: "不新增图像或图标", rationale: "文本内容问题由语义片段解决"}
+  data: {decision: "摘要不写回title或业务字段；不从标题推断期限/进度；否定语境保守回退", rationale: "简短不能变成错误事实"}
+  time: {decision: "纯本地确定性提取，无模型网络；刷新相同原名时保留展开状态", rationale: "无额外登录且不打断核对"}
+signature_expression:
+  dimension: "density"
+  expression: "公司或项目/工作对象片段"
+  relation_to_content: "保留区分任务的实体，不只截掉尾巴"
+adapter:
+  type: app
+  spatial_model: "短名与可选期限为默认；原文展开为按需层"
+  temporal_model: "数据刷新不改变原名；无需创建Codex任务"
+  critical_states: ["长标题无business", "已有短名", "否定语境", "不能可靠提炼", "未知标题", "断线", "200%字号"]
+  required_viewports_or_outputs: ["真实截图四项390x560", "320宽200%字号", "原文展开状态"]
+verification:
+  machine_checks: ["真实截图反例Red", "片段与原文offset一致", "多公司与文件名不丢失", "键盘原文与原任务跳转", "不从title生成业务字段"]
+  real_medium_checks: ["浏览器渲染原截图文字而非手写短示例", "原生候选工件哈希"]
+  human_judgment_questions: ["无需逐项打开时能否识别具体事项"]
+  status: specified
+  evidence_paths: ["用户截图codex-clipboard-727a8622-5d9c-441d-94ef-13f166b44f65.png"]

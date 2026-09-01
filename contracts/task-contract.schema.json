@@ -1,0 +1,360 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://local.codex-task-dock.invalid/contracts/task-contract.schema.json",
+  "title": "Codex Task Dock phase-1 task contract",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "threadId": {
+      "type": "string"
+    },
+    "runtime": {
+      "$ref": "#/$defs/runtime"
+    },
+    "business": {
+      "$ref": "#/$defs/business"
+    },
+    "planView": {
+      "$ref": "#/$defs/planView"
+    }
+  },
+  "required": [
+    "threadId"
+  ],
+  "$defs": {
+    "source": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/userSource"
+        },
+        {
+          "$ref": "#/$defs/manualSource"
+        }
+      ]
+    },
+    "sourcedText": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value",
+        "source"
+      ],
+      "properties": {
+        "value": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source": {
+          "$ref": "#/$defs/source"
+        }
+      }
+    },
+    "deadline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "value",
+        "source",
+        "basis"
+      ],
+      "properties": {
+        "value": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "source": {
+          "$ref": "#/$defs/source"
+        },
+        "basis": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "type",
+            "timeZone"
+          ],
+          "properties": {
+            "type": {
+              "enum": [
+                "explicit",
+                "relative"
+              ]
+            },
+            "messageTime": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "timeZone": {
+              "const": "Asia/Shanghai"
+            }
+          },
+          "allOf": [
+            {
+              "if": {
+                "properties": {
+                  "type": {
+                    "const": "relative"
+                  }
+                }
+              },
+              "then": {
+                "required": [
+                  "messageTime"
+                ]
+              }
+            }
+          ]
+        }
+      }
+    },
+    "business": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "company": {
+          "$ref": "#/$defs/sourcedText"
+        },
+        "project": {
+          "$ref": "#/$defs/sourcedText"
+        },
+        "workContent": {
+          "$ref": "#/$defs/sourcedText"
+        },
+        "subject": {
+          "$ref": "#/$defs/sourcedText"
+        },
+        "deadline": {
+          "$ref": "#/$defs/deadline"
+        },
+        "partition": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/sourcedText"
+            },
+            {
+              "properties": {
+                "value": {
+                  "enum": [
+                    "实习",
+                    "工作",
+                    "学习"
+                  ]
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "runtime": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "threadState": {
+          "type": "string"
+        },
+        "goal": {},
+        "plan": {
+          "type": "array"
+        }
+      }
+    },
+    "planView": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "progress": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "current",
+            "total"
+          ],
+          "properties": {
+            "current": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "total": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        },
+        "nextStepId": {
+          "type": "string"
+        },
+        "currentStep": {
+          "type": "string",
+          "minLength": 1
+        },
+        "nextStep": {
+          "type": "string",
+          "minLength": 1
+        },
+        "source": {
+          "$ref": "#/$defs/planSource"
+        }
+      }
+    },
+    "userSource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sourceThreadId",
+        "sourceTurnId",
+        "sourceMessageId"
+      ],
+      "properties": {
+        "sourceThreadId": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^\\S+$"
+        },
+        "sourceTurnId": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^\\S+$"
+        },
+        "sourceMessageId": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^\\S+$"
+        }
+      }
+    },
+    "manualSource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "sourceThreadId",
+        "sourceRecordId"
+      ],
+      "properties": {
+        "kind": {
+          "const": "dockManualInput"
+        },
+        "sourceThreadId": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^\\S+$"
+        },
+        "sourceRecordId": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^\\S+$"
+        }
+      }
+    },
+    "planSource": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "threadId",
+        "turnId",
+        "receivedAt",
+        "localSequence"
+      ],
+      "properties": {
+        "kind": {
+          "const": "appServer.plan"
+        },
+        "threadId": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^\\S+$"
+        },
+        "turnId": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^\\S+$"
+        },
+        "receivedAt": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "localSequence": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    }
+  },
+  "policy": {
+    "businessFieldSources": [
+      "userMessage",
+      "dockManualInput"
+    ],
+    "systemFieldSources": [
+      "appServer.threadState",
+      "appServer.goal",
+      "appServer.plan"
+    ],
+    "missingBusinessFields": "omit",
+    "ambiguousDates": "omit",
+    "relativeDateBinding": {
+      "messageTimeRequired": true,
+      "timeZone": "Asia/Shanghai"
+    },
+    "dateCounters": {
+      "explicitDeadlineRequired": true,
+      "missingDeadlineParticipation": false
+    },
+    "defaultImminentThresholdHours": 24,
+    "progress": {
+      "mode": "inProgressIndexOverTotal",
+      "percentForbidden": true,
+      "structuredPlanRequired": true,
+      "fallback": "omit"
+    },
+    "nextStep": {
+      "source": "firstPendingAfterCurrentInProgress",
+      "fallback": "omit"
+    },
+    "runtimeStateIsBusinessCompletion": false,
+    "runtimeStatesNeverImplyBusinessCompletion": [
+      "idle",
+      "notLoaded",
+      "turnCompleted"
+    ],
+    "unknownPartition": "omit",
+    "visualEncoding": {
+      "colorOnlyForbidden": true,
+      "nonColorLabelRequired": true
+    },
+    "network": {
+      "listenHost": "127.0.0.1",
+      "nonLoopbackForbidden": true
+    },
+    "telemetry": {
+      "defaultEnabled": false
+    },
+    "mvpMutationsForbidden": [
+      "interrupt",
+      "start",
+      "archive",
+      "delete",
+      "modify"
+    ],
+    "secrets": {
+      "copyChatGptTokenForbidden": true,
+      "persistChatGptTokenForbidden": true,
+      "logAuthUrlForbidden": true,
+      "logEmailForbidden": true,
+      "logFullMessagesForbidden": true
+    },
+    "provenanceBinding": {
+      "requiredForTrustedProjection": true,
+      "manualUsesLocalRecordId": true,
+      "identifiersAreNotAuthentication": true
+    },
+    "planObservation": {
+      "source": "appServerSubscription",
+      "requiresThreadAndTurnBinding": true,
+      "localSequenceIsOfficialEventId": false,
+      "maxAgeMs": 10000,
+      "historicalFallback": "omit"
+    }
+  }
+}

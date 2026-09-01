@@ -1,0 +1,140 @@
+{
+  "schema_version": "aesthetic-contract-v2",
+  "status": "rendered",
+  "brief": {
+    "audience": "同时处理多项目的Codex用户",
+    "context": "用户选A并授权两产品继续；本轮只接浮窗",
+    "primary_job": "屏幕角落直接扫读真实任务标题与更新",
+    "secondary_job": "明确连接与进度采集边界",
+    "artifact_type": "独立Tauri任务浮窗",
+    "medium": "app",
+    "delivery_environment": "Windows Tauri；Chromium为布局验证，不冒充原生",
+    "intended_first_impression": "紧凑、安静、文字优先"
+  },
+  "content": {
+    "truth_source": "GET127.0.0.1:4317/api/snapshot；仅threadId/title/titleSource/runtimeState/updatedAt与connection/stale/lastSuccessAt；排除projects/preview/cwd与任意字段",
+    "roles": {
+      "claim": [
+        "本机已采集任务，不是待办全集"
+      ],
+      "evidence": [
+        "原始标题与更新时间"
+      ],
+      "context": [
+        "无结构化plan不显示步骤，notLoaded不作待开始"
+      ],
+      "action": [
+        "刷新、筛选、隐藏浮窗"
+      ],
+      "navigation": [
+        "今日有更新/全部；浏览器总览另行推进"
+      ],
+      "state": [
+        "首次无数据/空/陈旧/恢复"
+      ],
+      "identity": [
+        "手边任务"
+      ],
+      "source": [
+        "本机只读采集"
+      ]
+    },
+    "missing_material": [
+      "用户业务字段/分区/期限",
+      "可靠跨窗口运行状态/plan"
+    ],
+    "prohibited_fabrication": true
+  },
+  "attention": {
+    "primary": "具体任务标题",
+    "secondary": "更新时刻",
+    "tertiary": "连接及采集限制",
+    "reading_or_action_order": [
+      "更新数量",
+      "最近更新的任务",
+      "采集说明"
+    ]
+  },
+  "visual_grammar": {
+    "family_or_hybrid": "已选A的紧凑工作面板",
+    "rationale": "继承A但不保留虚构样例值",
+    "imagery": {
+      "decision": "无装饰图；状态点+文字",
+      "rationale": "图片不提升任务扫描"
+    },
+    "data": {
+      "decision": "仅真实元数据；无业务分类时不生成实习/工作假分组",
+      "rationale": "缺失保持缺失；未来可信字段再启用分区"
+    },
+    "time": {
+      "decision": "5秒非重叠只读刷新；失败保留上次数据与成功时间；200依然承接server stale；10秒以上成功时间视为陈旧",
+      "rationale": "避免假实时与旧响应覆盖"
+    },
+    "composition": {
+      "decision": "390x560；顶栏、二项统计、紧凑筛选、可滚动标题列表、底部状态",
+      "rationale": "任务为主体"
+    },
+    "typography": {
+      "decision": "微软雅黑UI；19px标题/14px任务/12px说明；可200%放大",
+      "rationale": "中文易读"
+    },
+    "density": {
+      "decision": "最近更新任务直接显示；长文换行不截断正文；不堆无来源占位字段",
+      "rationale": "不要求逐项展开"
+    },
+    "color": {
+      "decision": "冷白深墨、蓝绿连接；陶土陈旧；保留A未来实习/工作的语义色，不假造分区",
+      "rationale": "颜色只表达真实状态"
+    },
+    "geometry": {
+      "decision": "原生有边框；内部细分隔、无嵌套卡片",
+      "rationale": "压低视觉噪音"
+    }
+  },
+  "signature_expression": {
+    "dimension": "对齐和密度",
+    "expression": "窄窗内标题直接可见",
+    "relation_to_content": "优先任务而非项目目录"
+  },
+  "adapter": {
+    "type": "app + web rendering",
+    "spatial_model": "390x560，320窄窗，列表局部滚动",
+    "temporal_model": "单请求；首次无数据不填0；成功空可0；失败保留；恢复重新计数",
+    "critical_states": [
+      "首次无snapshot",
+      "成功空",
+      "有数据",
+      "服务端stale",
+      "连接失败",
+      "恢复",
+      "长中文/200%文字"
+    ],
+    "required_viewports_or_outputs": [
+      "390x560",
+      "320x560",
+      "200%文字",
+      "213条滚动",
+      "空/陈旧"
+    ]
+  },
+  "verification": {
+    "machine_checks": [
+      "真实UI行为Red；白名单/状态/安全文本/秒时间戳",
+      "Rust传输执行测试：GET/redirect/non2xx/timeout/json/schema/流式2MiB+1",
+      "本机来源+main校验",
+      "原有33回归与生命周期接线"
+    ],
+    "real_medium_checks": [
+      "Chromium截图与目检",
+      "Rust调用真实4317只回显计数",
+      "原生交互未测不升级"
+    ],
+    "human_judgment_questions": [
+      "真实内容接入后密度是否适合角落？"
+    ],
+    "status": "specified",
+    "evidence_paths": [
+      "shell/runtime/evidence/"
+    ]
+  }
+}

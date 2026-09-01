@@ -1,0 +1,56 @@
+schema_version: aesthetic-contract-v2
+status: proposed
+brief:
+  audience: "使用右下角任务浮窗的用户"
+  context: "用户截图的系统浅色标题栏与已接受深色内容冲突"
+  primary_job: "消除原生顶部色彩割裂"
+  secondary_job: "保留可靠的原生窗口控制"
+  artifact_type: "Windows标题栏主题修复"
+  medium: app
+  delivery_environment: "现有Tauri Windows浮窗390x560"
+  intended_first_impression: "窗口与内容属于同一深色工具"
+content:
+  truth_source: "用户截图与现有原生窗口配置"
+  roles:
+    claim: ["仅修复原生主题"]
+    evidence: ["本地Tauri/tao支持Windows theme"]
+    context: ["不重做内容布局"]
+    action: ["原生关闭/最小化"]
+    navigation: ["原任务跳转保持"]
+    state: ["显隐行为保持"]
+    identity: ["手边任务"]
+    source: ["不改变数据合同"]
+  missing_material: ["新exe原生截图验收"]
+  prohibited_fabrication: true
+attention:
+  primary: "工作对象"
+  secondary: "分区与日期"
+  tertiary: "窗口标题栏"
+  reading_or_action_order: ["任务", "窗口控制"]
+visual_grammar:
+  family_or_hybrid: "沿用已接受的深色紧凑工具"
+  rationale: "用户要求颜色协调而非再次换风格"
+  composition: {decision: "原生标题栏保持", rationale: "不改拖动/快捷操作"}
+  typography: {decision: "沿用Windows系统标题字体", rationale: "保留可访问性"}
+  density: {decision: "保持390x560与原生装饰高度", rationale: "局部修复不改变任务面积"}
+  color: {decision: "窗口theme固定Dark，内容仍炭黑", rationale: "修复浅色顶部"}
+  geometry: {decision: "保留原生控制与边框", rationale: "不造易错无边框窗口"}
+  imagery: {decision: "图标不变", rationale: "无新增装饰"}
+  data: {decision: "不修改运行/计划字段", rationale: "主题不解决数据缺失"}
+  time: {decision: "初始窗口创建即设Dark", rationale: "避免呼出后再切换闪白"}
+signature_expression:
+  dimension: "color"
+  expression: "原生深色标题栏与炭黑内容协调"
+  relation_to_content: "降低顶部视觉噪声"
+adapter:
+  type: app
+  spatial_model: "系统标题栏加现有内容"
+  temporal_model: "创建窗口即使用主题"
+  critical_states: ["初次打开", "托盘恢复", "系统浅色主题"]
+  required_viewports_or_outputs: ["Windows原生390x560"]
+verification:
+  machine_checks: ["Dark主题Red", "原生装饰/托盘属性保留", "cargo构建"]
+  real_medium_checks: ["新exe原生截图，无法取得时明确未测"]
+  human_judgment_questions: ["顶部是否与内容协调"]
+  status: specified
+  evidence_paths: ["用户本轮截图", "native-theme-v1回执"]

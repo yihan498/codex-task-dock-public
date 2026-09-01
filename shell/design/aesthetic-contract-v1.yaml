@@ -1,0 +1,72 @@
+schema_version: aesthetic-contract-v2
+status: specified
+brief:
+  audience: "在 Windows 上同时观察多个本机 Codex 任务的单一用户"
+  context: "常驻托盘或屏幕角落，短时呼出确认技术运行状态与可靠计划信息"
+  primary_job: "在不控制 Codex 任务的前提下，快速看清哪些本机任务处于何种技术状态"
+  secondary_job: "提供显示、隐藏、只读刷新与诊断入口；缺失业务信息时保持缺失"
+  artifact_type: "Tauri 2 Windows 托盘壳的最小只读窗口"
+  medium: "app"
+  delivery_environment: "本机单用户、127.0.0.1 App Server、默认无遥测"
+  intended_first_impression: "安静、可信、像一个不会越权的本机状态仪表"
+content:
+  truth_source: "只读投影合同；业务字段仅来自 userMessage/用户手填，系统字段仅来自结构化事件"
+  roles:
+    claim: ["当前是本机只读聚合，不是任务控制器"]
+    evidence: ["结构化运行状态", "可靠结构化计划位置（如存在）", "来源标识"]
+    context: ["连接状态", "数据新鲜度", "证据等级"]
+    action: ["显示/隐藏", "只读刷新", "诊断"]
+    navigation: ["托盘入口", "可配置全局快捷键"]
+    state: ["active", "idle", "notLoaded", "disconnected", "stale"]
+    identity: ["Codex Task Dock"]
+    source: ["本机 App Server 结构化事件", "用户消息或用户手填文本"]
+  missing_material: ["稳定的跨窗口实时计划流", "用户确认的最终视觉偏好", "安装与真实安装证据"]
+  prohibited_fabrication: true
+attention:
+  primary: "任务技术运行状态及其文字标签"
+  secondary: "项目名、内容简介和可靠计划位置（仅存在时）"
+  tertiary: "连接状态、来源与诊断信息"
+  reading_or_action_order: ["连接与新鲜度", "任务状态", "可用业务内容", "可靠计划", "刷新或诊断"]
+visual_grammar:
+  family_or_hybrid: "Analytical Precision × Institutional Clarity"
+  rationale: "高频短时扫描需要紧凑直接，隐私与证据边界需要明确克制"
+  composition:
+    decision: "单列窄窗；顶栏连接状态，下方按用户明确分区排列；不使用大面积卡片网格"
+    rationale: "适应屏幕角落和键盘呼出，保持固定阅读顺序"
+  typography:
+    decision: "Segoe UI Variable / Microsoft YaHei UI；状态与数字使用等宽数字，三级字重"
+    rationale: "贴合 Windows，兼顾中文、英文和紧凑状态比较"
+  density:
+    decision: "紧凑行项目，8px 基础节奏；诊断信息默认收起"
+    rationale: "短时呼出以扫描为主，同时避免把次要证据塞进主视图"
+  color:
+    decision: "浅中性底与深墨文字；active/idle/notLoaded 使用有限语义色且始终配文字和图形"
+    rationale: "颜色只辅助状态辨识，不承担唯一语义，也不使用渐变"
+  geometry:
+    decision: "4px 小圆角、1px 分隔线、无装饰阴影；可交互控件保留 Windows 焦点环"
+    rationale: "几何只表达分组和焦点，减少悬浮卡片感"
+  imagery:
+    decision: "不使用照片或装饰插画；仅用可访问的状态符号和托盘图标"
+    rationale: "运行状态是证据型内容，图像不会增加解释价值"
+  data:
+    decision: "直接文字标签；进度仅显示结构化计划的 n/m，无计划时整个进度与下一步区域省略"
+    rationale: "防止百分比和文本猜测制造虚假精确性"
+  time:
+    decision: "显示/隐藏为即时幂等切换；变化仅用 120ms 淡入并支持 reduced-motion；断开保留陈旧标记"
+    rationale: "动作应可预测，运动只用于反馈而非装饰"
+signature_expression:
+  dimension: "state"
+  expression: "每个技术状态由符号、文字和可选语义色三重编码"
+  relation_to_content: "强调运行状态与业务完成是两套语义，避免颜色误导"
+adapter:
+  type: "app"
+  spatial_model: "Windows 托盘入口 + 可聚焦的单一角落窗口"
+  temporal_model: "托盘点击或快捷键切换；重复显式显示/隐藏调用幂等"
+  critical_states: ["loading", "empty", "disconnected", "stale", "active", "idle", "notLoaded", "missing-plan"]
+  required_viewports_or_outputs: ["420x640 Windows WebView", "200% 文本缩放", "键盘焦点顺序", "托盘图标和菜单"]
+verification:
+  machine_checks: ["合同完整性", "只读投影测试", "缺失计划省略测试", "状态隔离测试", "最小能力 allowlist 测试", "Rust 单元测试"]
+  real_medium_checks: ["真实 Tauri 窗口渲染", "托盘点击", "可配置快捷键", "另一个 Codex 任务非干扰"]
+  human_judgment_questions: ["第一眼是否先看到正确的技术状态？", "信息量是否适合短时呼出？", "它是否像可信的本机工具而不是通用模板？"]
+  status: specified
+  evidence_paths: ["shell/design/aesthetic-contract-v1.yaml"]

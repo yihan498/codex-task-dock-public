@@ -1,0 +1,56 @@
+schema_version: aesthetic-contract-v2
+status: proposed
+brief:
+  audience: "多窗口工作用户"
+  context: "用户提供深色紧凑界面作风格参考，强调不复制其内容"
+  primary_job: "沿用既定字段和用途分区，更紧凑地看手上任务"
+  secondary_job: "确认新的视觉方向，不改变生产程序"
+  artifact_type: "独立静态浮窗效果稿"
+  medium: app
+  delivery_environment: "380x500 HTML效果稿，未接原生与账户"
+  intended_first_impression: "深色、紧凑、事项集中而非大块空白"
+content:
+  truth_source: "用户已提供任务名称及原需求；示例状态字段逐页显著声明"
+  roles:
+    claim: ["只借鉴视觉不复制产品模块"]
+    evidence: ["名称取自已有用户内容"]
+    context: ["实习/工作分区仅效果演示，非自动分类结论"]
+    action: ["原任务入口位置示意"]
+    navigation: ["不实现外部导航"]
+    state: ["示例状态", "缺失字段省略的平行稿"]
+    identity: ["公司与具体工作对象"]
+    source: ["布局示意标识", "未连接实时数据标识"]
+  missing_material: ["真实步骤", "真实截止", "分类接受"]
+  prohibited_fabrication: true
+attention:
+  primary: "任务名称与当前步骤"
+  secondary: "用途分区、截止、下一步"
+  tertiary: "示意声明与原任务入口"
+  reading_or_action_order: ["用途分区", "具体任务", "期限和步骤", "下一步", "原任务"]
+visual_grammar:
+  family_or_hybrid: "深色紧凑工作清单"
+  rationale: "参考图的低亮度底、细分区、稠密行距贴近角落浮窗，但内容仍遵循用户旧要求"
+  composition: {decision: "小标题和单行总览，上下实习/工作分区，紧凑任务行，底部轻入口", rationale: "保留跨用途管理而不照搬番茄钟或日程"}
+  typography: {decision: "主任务14px，标签和步骤12px，元信息11px；系统中文字体", rationale: "小浮窗也让具体对象优先且可读"}
+  density: {decision: "380x500内3条含步骤示例无需展开；无字段版保持紧凑", rationale: "信息完整不等于过程详情铺满"}
+  color: {decision: "炭黑底和深灰表面；实习琥珀/工作蓝有文字；步骤完成青绿/当前琥珀/未做空段，状态同样文字标明", rationale: "类别和状态靠位置文字区分，不用纯色猜语义"}
+  geometry: {decision: "6px以内圆角与细边线；每任务小型分段条仅演示已知步骤", rationale: "借鉴参考的紧凑分区而非放大卡片"}
+  imagery: {decision: "仅小型形状和箭头，不用插画与截图复制", rationale: "图形用于步骤和导航位置"}
+  data: {decision: "演示稿顶部声明分类状态步骤期限均为示例；缺失稿不画进度和时间，不猜进行中或用途", rationale: "设计示范不可冒充实时账户状态"}
+  time: {decision: "无动画和脚本，无计时延时奖励日程模块", rationale: "本轮是静态视觉，不扩展功能"}
+signature_expression:
+  dimension: "density"
+  expression: "炭黑小窗中的紧凑分区与分段步骤"
+  relation_to_content: "呈现具体工作、真实数据未来接入后的概要位置"
+adapter:
+  type: app
+  spatial_model: "固定小浮窗形态，320窄宽和200%字体允许纵向滚动"
+  temporal_model: "静态效果；不调用或修改任务"
+  critical_states: ["明确示例的有字段状态", "缺失步骤和分类", "长中文", "200%字号"]
+  required_viewports_or_outputs: ["380x500有字段示意", "380x500缺失字段", "320x500 200%"]
+verification:
+  machine_checks: ["合同八轴", "文字对比度", "无外部资源及业务调用", "演示声明始终存在", "未知稿无假步骤或期限", "无横向溢出"]
+  real_medium_checks: ["真实Chromium渲染与逐图检查；非原生"]
+  human_judgment_questions: ["这种深色和紧凑程度是否贴近你给的风格参考？"]
+  status: specified
+  evidence_paths: ["用户参考codex-clipboard-eda27cea-5327-48c2-9db8-26396166fcdb.jpg", "用户明确只参考风格的补充"]

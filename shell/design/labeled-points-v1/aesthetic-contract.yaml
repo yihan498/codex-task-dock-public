@@ -1,0 +1,56 @@
+schema_version: aesthetic-contract-v2
+status: proposed
+brief:
+  audience: "同时处理多窗口任务的用户"
+  context: "候选7的斜杠列表难以区分实体和对象"
+  primary_job: "扫一眼区分归属与要做的对象"
+  secondary_job: "识别已提供期限并直接打开原任务"
+  artifact_type: "托盘面板信息层级改进"
+  medium: app
+  delivery_environment: "Windows Tauri，390x560固定小浮窗"
+  intended_first_impression: "标签是归属，主行是工作，而非关键词串"
+content:
+  truth_source: "已有绑定用户字段及titlePoints原文片段"
+  roles:
+    claim: ["工作对象是视觉主角"]
+    evidence: ["可展开完整原名"]
+    context: ["实体或工具摘录", "已提供分区"]
+    action: ["打开原任务"]
+    navigation: ["原threadId不变"]
+    state: ["全局步骤不可确认"]
+    identity: ["公司与项目视觉定位"]
+    source: ["用户字段与标题摘录明确区分"]
+  missing_material: ["实时步骤与下一步", "用户未提供期限"]
+  prohibited_fabrication: true
+attention:
+  primary: "工作对象主行"
+  secondary: "身份标签及期限"
+  tertiary: "来源及采集提示"
+  reading_or_action_order: ["身份标签", "工作对象", "期限", "原任务"]
+visual_grammar:
+  family_or_hybrid: "标签与主行分层的轻量工作清单"
+  rationale: "同等权重斜杠难扫读，用位置和形状表达差异"
+  composition: {decision: "实体标签上行，工作对象下行，期限独立一行，窗口不增大", rationale: "保持整体紧凑但不把所有词连成串"}
+  typography: {decision: "工作14px半粗，标签11px常规，来源11px", rationale: "三个层级且不靠缩小主文字腾空间"}
+  density: {decision: "最多沿用4原文片段，不新增逐项步骤占位", rationale: "减少误导和重复信息"}
+  color: {decision: "青绿实体/已绑定公司，紫色工具/已绑定项目，灰色对象，期限深棕配时钟；都带文字", rationale: "表达信息类型而非进度或未确认分区，不能只靠颜色"}
+  geometry: {decision: "4px圆角色标签，工作为无遮罩文本；时钟SVG为日期定位；分隔线保留", rationale: "形状区分身份与行动，不装饰性增加卡片"}
+  imagery: {decision: "仅文字旁小型本地时钟SVG，aria-hidden", rationale: "辅助寻找截止而非画虚假进度条"}
+  data: {decision: "摘录kind只为视觉线索不变业务字段；不按斜杠split原文；无plan则不画进度条", rationale: "保留路径完整及否定语义，不让颜色把推断升级为事实"}
+  time: {decision: "无动画和循环条，保持5秒刷新和展开状态", rationale: "无进度数据不制造活动错觉"}
+signature_expression:
+  dimension: "composition"
+  expression: "有底色的身份标签与无底色工作行"
+  relation_to_content: "回答谁的任务、处理什么对象"
+adapter:
+  type: app
+  spatial_model: "紧凑纵向清单，标签换行不横向溢出"
+  temporal_model: "显示刷新不控制Codex运行"
+  critical_states: ["原始短名", "extract", "否定excerpt", "绑定business", "期限缺失", "离线", "200%字号"]
+  required_viewports_or_outputs: ["390x560截图原文", "390x560绑定字段合成样例", "320宽200%"]
+verification:
+  machine_checks: ["新分层行为Red", "原有语义回归", "颜色对比与文字等价", "无伪造进度", "带斜杠文件名完整", "键盘打开任务"]
+  real_medium_checks: ["最终浏览器截图及目检", "候选8工件摘要核验"]
+  human_judgment_questions: ["现在能否直接分清归属和具体工作，而不用读斜杠串？"]
+  status: specified
+  evidence_paths: ["用户本轮斜杠/颜色图形反馈"]

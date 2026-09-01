@@ -1,0 +1,56 @@
+schema_version: aesthetic-contract-v2
+status: proposed
+brief:
+  audience: "用户同时处理多窗口工作"
+  context: "用户已接受reference-style-v2深色紧凑方向并要求最终生产实现"
+  primary_job: "按可信用途分区扫读具体工作与截止"
+  secondary_job: "直接打开原任务、隐藏托盘、识别数据缺失"
+  artifact_type: "生产深色任务浮窗"
+  medium: app
+  delivery_environment: "Windows Tauri，保持原生390x560；浏览器同时检验380x500"
+  intended_first_impression: "接受的深色紧凑风格，不是静态示例"
+content:
+  truth_source: "现有只读snapshot与source绑定business字段，原title"
+  roles:
+    claim: ["已提供的信息才显示"]
+    evidence: ["原名可核对"]
+    context: ["明确分区，未知待归类"]
+    action: ["原任务打开", "隐藏", "刷新"]
+    navigation: ["准确原threadId"]
+    state: ["步骤不可确认", "陈旧/断线", "已提供期限临近/逾期"]
+    identity: ["公司与具体对象"]
+    source: ["字段出处与只读边界"]
+  missing_material: ["真实结构化plan", "原生最后一跳环境"]
+  prohibited_fabrication: true
+attention:
+  primary: "具体工作对象"
+  secondary: "分区与期限"
+  tertiary: "采集/来源状态"
+  reading_or_action_order: ["用途分区", "公司/对象", "提供的期限", "打开任务"]
+visual_grammar:
+  family_or_hybrid: "已接受的炭黑紧凑分区"
+  rationale: "静态风格accepted仅迁移视觉，生产数据仍必须真实"
+  composition: {decision: "小标题、单行统计、分区标题、紧凑任务块；移除大留白", rationale: "增加一眼可见事项"}
+  typography: {decision: "任务14px、身份和来源11px、分区12px，中文系统字体", rationale: "保留对象可读性"}
+  density: {decision: "390x560主视图紧凑，380x500仍可看三条；200%可滚动", rationale: "小浮窗而非全屏管理台"}
+  color: {decision: "炭黑#15191d；实习琥珀、工作蓝、学习青绿、待归类灰均带文字；期限临近琥珀逾期珊瑚", rationale: "用途不是状态，期限不是业务完成"}
+  geometry: {decision: "细边框5px圆角任务块与窄用途色条；保留时钟图标", rationale: "只借参考风格，不复制功能"}
+  imagery: {decision: "仅时钟与小箭头，真实plan缺失时不画步骤图形", rationale: "不以装饰造假"}
+  data: {decision: "partition仅绑定用户字段；陌生/缺失待归类；期限12小时内与逾期按明确日期计算；未知业务状态不计零", rationale: "真实计划探针0不能冒充同步"}
+  time: {decision: "5秒只读刷新；保留展开和滚动；日期变化参与重绘；无动画", rationale: "可靠更新与非干扰"}
+signature_expression:
+  dimension: "composition"
+  expression: "色条用途分区下的紧凑任务块"
+  relation_to_content: "对应实习/工作隔离与对象识别"
+adapter:
+  type: app
+  spatial_model: "竖向滚动分组，缺失分组不伪造"
+  temporal_model: "不注册新业务任务、不接管原任务"
+  critical_states: ["混合分区", "未知分区", "临近/逾期/缺期限", "断线/陈旧", "200%"]
+  required_viewports_or_outputs: ["390x560真实文字fixture", "380x500可信字段fixture", "320宽200%"]
+verification:
+  machine_checks: ["分区与暗色Red", "日期提醒不猜状态", "跨分区去重/过滤", "旧语义安全交互回归"]
+  real_medium_checks: ["生产HTML真实Chromium渲染", "最终release摘要"]
+  human_judgment_questions: ["生产界面是否保持已接受风格和信息密度"]
+  status: specified
+  evidence_paths: ["reference-style-v2-demo.png用户已接受", "contracts/end-to-end-delivery-v2.md"]

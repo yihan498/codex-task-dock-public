@@ -1,0 +1,11 @@
+{
+  "name": "codex-task-dock",
+  "version": "1.0.1",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node tests/tdd-runner.mjs",
+    "test:core": "node tests/tdd-runner.mjs --suite core",
+    "test:probe": "node tests/tdd-runner.mjs --suite probe"
+  }
+}

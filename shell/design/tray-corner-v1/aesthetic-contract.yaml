@@ -1,0 +1,56 @@
+schema_version: aesthetic-contract-v2
+status: proposed
+brief:
+  audience: "同一用户，多任务实习与工作"
+  context: "工作中短暂呼出右下角浮窗，不占底部任务栏"
+  primary_job: "一眼读到具体事项、明确期限"
+  secondary_job: "打开原任务，随时隐藏"
+  artifact_type: "Windows托盘浮窗迭代"
+  medium: app
+  delivery_environment: "本机Windows，390x560逻辑像素，系统工作区右下角"
+  intended_first_impression: "像手边便签，不像另一个完整工作台"
+content:
+  truth_source: "用户本轮截图及要求、原任务名称、来源绑定用户字段"
+  roles:
+    claim: ["具体对象/具体工作"]
+    evidence: ["已提供的截止时间"]
+    context: ["已提供的用途分区"]
+    action: ["隐藏、刷新"]
+    navigation: ["点击标题打开原任务"]
+    state: ["全局连接异常和步骤未同步提示"]
+    identity: ["保留A方案手边任务"]
+    source: ["悬停说明标题来源及采集更新时间"]
+  missing_material: ["跨窗口实时结构化步骤", "大部分任务的来源绑定业务摘要"]
+  prohibited_fabrication: true
+attention:
+  primary: "具体工作名称"
+  secondary: "期限与分区"
+  tertiary: "全局连接和能力限制"
+  reading_or_action_order: ["事项", "期限", "打开原任务或隐藏"]
+visual_grammar:
+  family_or_hybrid: "短时扫描的紧凑任务清单"
+  rationale: "用户明确要求关键点，保留已选A结构，仅降低重复说明密度"
+  composition: {decision: "主屏工作区右下角12逻辑像素留白，每次呼出重新定位", rationale: "与系统托盘形成稳定位置关系，避开系统任务栏"}
+  typography: {decision: "沿用中文系统字体、14px任务名与11px辅助行；长标题完整换行", rationale: "不为缩短而截掉处理对象；保持现有阅读习惯"}
+  density: {decision: "每项标题及有信息才显示的辅助行，不逐项堆采集日期和来源说明", rationale: "减少扫描负担，同时保留任务区滚动"}
+  color: {decision: "沿用A中性底色和绿色操作，错误仍棕红；不新增色系", rationale: "该反馈针对空间和密度，不重新引入审美变量"}
+  geometry: {decision: "保留细分隔线，不加卡片容器，底部任务栏不占位", rationale: "连续阅读及系统托盘工具的原生行为"}
+  imagery: {decision: "只保留现有托盘入口标识，无新增图片", rationale: "图片无法帮助比较工作事项"}
+  data: {decision: "无期限不显示期限，无真实plan不显示步骤或百分比；保留一处全局限制", rationale: "信息简洁不能掩盖缺失"}
+  time: {decision: "呼出前定位，无飞入动画；沿用串行刷新", rationale: "避免左上角闪现及打断主任务"}
+signature_expression:
+  dimension: "composition"
+  expression: "托盘到右下角固定锚点"
+  relation_to_content: "一瞥即可定位手边事项"
+adapter:
+  type: app
+  spatial_model: "可滚动清单，390x560；物理工作区定位，DPI换算，超小屏夹限"
+  temporal_model: "隐藏到托盘/呼出定位；不新增过渡"
+  critical_states: ["隐藏", "呼出", "无期限", "无步骤", "断线", "长中文", "200%文本"]
+  required_viewports_or_outputs: ["390x560", "320x560", "200%文本", "原生任务栏与屏幕锚点"]
+verification:
+  machine_checks: ["契约完整", "原生skipTaskbar配置与显隐接线", "定位/DPI负坐标边界", "标题期限与隐藏冗余元信息", "浏览器回归"]
+  real_medium_checks: ["内嵌UI真实浏览器fixture渲染", "原生右下角和无任务栏图标由用户桌面复核"]
+  human_judgment_questions: ["右下角与信息密度是否方便一瞥读取"]
+  status: specified
+  evidence_paths: ["用户附件codex-clipboard-34c25791-4dcd-4ef0-a330-fd7c282ef2b1.png"]

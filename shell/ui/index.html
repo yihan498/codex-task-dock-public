@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark"><title>手边任务 · 本机只读</title>
+<link rel="stylesheet" href="./styles.css?v=20260901-18"><script type="module" src="./app.mjs?v=20260901-18"></script>
+</head>
+<body>
+<main class="dock">
+ <header class="top"><h1><span aria-hidden="true">◈</span> 手边任务</h1><div class="controls"><button id="refresh" title="重新读取本机快照" aria-label="刷新任务">↻</button><button id="hide" title="隐藏到托盘" aria-label="隐藏浮窗">−</button></div></header>
+ <section class="metrics" aria-label="已采集任务统计"><div><b data-metric="today">—</b><span>今日有更新</span></div><div><b data-metric="total">—</b><span>本机任务</span></div></section>
+ <p class="scope">步骤暂不可确认 · 仅显示已提供的信息</p>
+ <nav class="filters" aria-label="任务范围"><button data-filter="current" aria-pressed="true">当前任务</button><button data-filter="today" aria-pressed="false">今日任务</button><button data-filter="all" aria-pressed="false">全部历史</button><span id="shown"></span></nav>
+ <section id="tasks" class="task-body" aria-label="任务列表" tabindex="0"><p class="empty">正在读取本机任务…</p></section>
+ <nav id="pagination" aria-label="当前任务分页"><button id="page-prev" aria-label="上一页">‹</button><span id="page-label">1 / 1</span><button id="page-next" aria-label="下一页">›</button></nav>
+ <footer><p id="connection" role="status">正在连接采集服务</p><p id="updated">仅只读 · 不控制主任务</p></footer>
+</main>
+</body>
+</html>

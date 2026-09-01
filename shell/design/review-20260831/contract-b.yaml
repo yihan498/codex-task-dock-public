@@ -1,0 +1,143 @@
+{
+  "schema_version": "aesthetic-contract-v2",
+  "status": "specified",
+  "brief": {
+    "audience": "每天并行处理实习和工作的Codex用户",
+    "context": "屏幕角落短时呼出；用户明确否定v0.4审美",
+    "primary_job": "不用逐个点开就看到公司、对象、步骤和下一步",
+    "secondary_job": "用同内容对比两种小浮窗审美，不改生产",
+    "artifact_type": "静态浮窗HTML/CSS候选",
+    "medium": "app",
+    "delivery_environment": "Windows Chromium渲染；不是Tauri真机验收",
+    "intended_first_impression": "小、易扫读、有明确领域分区"
+  },
+  "content": {
+    "truth_source": "用户要求；全部3条为醒目标注的虚构排版样例，不当真实业务事实",
+    "roles": {
+      "claim": [
+        "概要常显"
+      ],
+      "evidence": [
+        "仅样例排版"
+      ],
+      "context": [
+        "每候选顶部注明虚构样例、未连接"
+      ],
+      "action": [
+        "仅显隐/打开的静态符号示意"
+      ],
+      "navigation": [
+        "实习工作同屏"
+      ],
+      "state": [
+        "状态文字与颜色双编码"
+      ],
+      "identity": [
+        "手边任务"
+      ],
+      "source": [
+        "本目录README样例来源"
+      ]
+    },
+    "missing_material": [
+      "真实用户业务字段",
+      "可靠结构化plan",
+      "用户审美选择"
+    ],
+    "prohibited_fabrication": true
+  },
+  "attention": {
+    "primary": "公司和任务对象",
+    "secondary": "当前步骤和下一步",
+    "tertiary": "期限与统计",
+    "reading_or_action_order": [
+      "统计",
+      "实习",
+      "工作",
+      "步骤与下一步"
+    ]
+  },
+  "visual_grammar": {
+    "family_or_hybrid": "针对高频角落扫描推导的紧凑工作面板",
+    "rationale": "缩减旧大标题搜索和筛选区，把任务作为首屏焦点",
+    "imagery": {
+      "decision": "无照片装饰图，只用状态点与线性窗体符号",
+      "rationale": "内容为文字状态，图像不能增加比较效率"
+    },
+    "data": {
+      "decision": "3条均虚构；时间状态步数不是实际进展；第二项缺计划和截止全部省略；无百分比",
+      "rationale": "候选不冒充自动同步，允许缺失"
+    },
+    "time": {
+      "decision": "完全静态，无闪烁、假刷新或假连接状态",
+      "rationale": "只验收视觉；未来交互再按TDD推进"
+    },
+    "composition": {
+      "decision": "420px左侧类别窄栏，右侧字段对齐的任务列表",
+      "rationale": "横向行结构区别于A的纵向分组"
+    },
+    "typography": {
+      "decision": "微软雅黑UI常规13px；标题17px，等宽数字",
+      "rationale": "以对齐代替大字号，语气更轻"
+    },
+    "density": {
+      "decision": "520px高展示3项，较密集共享列",
+      "rationale": "少占屏幕，代价是长标题更紧"
+    },
+    "color": {
+      "decision": "温暖纸白、深褐；实习橄榄、工作莓色；截止棕红",
+      "rationale": "营造便签而非后台界面感"
+    },
+    "geometry": {
+      "decision": "8px窗角，无独立任务容器，左侧分区栏与细横线",
+      "rationale": "共享列减少重复框线"
+    }
+  },
+  "signature_expression": {
+    "dimension": "分组与对齐",
+    "expression": "领域色配文字；步骤与下一步直接可见",
+    "relation_to_content": "回应不逐个点开、分区清晰的需求"
+  },
+  "adapter": {
+    "type": "app + web prototype",
+    "spatial_model": "3条样例同屏；窄窗小宽度自适应",
+    "temporal_model": "静态，无API无可执行交互",
+    "critical_states": [
+      "正常示例",
+      "无期限与计划",
+      "空内容",
+      "离线提示"
+    ],
+    "required_viewports_or_outputs": [
+      "A390x560",
+      "B420x520",
+      "320 CSS px",
+      "200% text",
+      "长中文",
+      "990x720并排比较"
+    ]
+  },
+  "verification": {
+    "machine_checks": [
+      "8轴合同校验",
+      "overflow",
+      "长中文换行",
+      "200%文字",
+      "缺失字段省略",
+      "对比度",
+      "console/pageerror"
+    ],
+    "real_medium_checks": [
+      "真实Chromium截图",
+      "实际图片目检",
+      "不升级为原生验收"
+    ],
+    "human_judgment_questions": [
+      "哪个更适合常驻屏幕角落？"
+    ],
+    "status": "specified",
+    "evidence_paths": [
+      "output/playwright/compare.png"
+    ]
+  }
+}

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Codex Task Dock">
+  <rect width="512" height="512" rx="72" fill="#19211d"/>
+  <path d="M128 142h142c75 0 122 44 122 114s-47 114-122 114H128V142Zm72 62v104h65c34 0 55-20 55-52s-21-52-55-52h-65Z" fill="#f3f1eb"/>
+  <rect x="92" y="402" width="328" height="26" rx="13" fill="#40a38d"/>
+</svg>

@@ -1,0 +1,56 @@
+schema_version: aesthetic-contract-v2
+status: proposed
+brief:
+  audience: "需要随时掌握手边执行进度的用户"
+  context: "小型托盘浮窗不应挤满历史已结束任务"
+  primary_job: "看清当前事项执行到了哪一步"
+  secondary_job: "按来源区分未结束报告、待更新和未接入"
+  artifact_type: "本机任务浮窗"
+  medium: app
+  delivery_environment: "Tauri Windows 390x560与380x500"
+  intended_first_impression: "少量要点、状态清楚、不打扰"
+content:
+  truth_source: "用户字段与明确标识的Agent结构化上报"
+  roles:
+    claim: ["单线程试点，不声称所有窗口实时同步"]
+    evidence: ["源报告步骤、序号和时间"]
+    context: ["未接入数量"]
+    action: ["刷新、隐藏"]
+    navigation: ["原任务、历史、分页"]
+    state: ["未结束、待更新、阻塞、结束"]
+    identity: ["公司项目与处理对象"]
+    source: ["Agent上报、最后报告时间与步骤更新时间"]
+  missing_material: ["其他线程接入", "原生截图验收"]
+  prohibited_fabrication: true
+attention:
+  primary: "具体工作对象与当前步骤"
+  secondary: "截止时间和下一步"
+  tertiary: "来源时间与采集状态"
+  reading_or_action_order: ["当前事项", "步骤", "下一步", "原任务"]
+visual_grammar:
+  family_or_hybrid: "沿用已确认炭黑紧凑工具风格"
+  rationale: "用户只要求当前内容和进度，不再次重做视觉风格"
+  composition: {decision: "当前任务默认，三张卡一页，历史次入口", rationale: "不让已结束任务挤占关注"}
+  typography: {decision: "对象14px，步骤12px，来源10px", rationale: "主次明确并支持200%字号"}
+  density: {decision: "三项内同屏，更多显式分页", rationale: "不依赖上下滚动找任务"}
+  color: {decision: "炭黑底，绿色完成段、蓝色当前段、灰色待做段，琥珀待更新", rationale: "颜色辅助文字不单独传意"}
+  geometry: {decision: "薄边框卡片与等宽步骤段", rationale: "区分事项与离散步骤，不伪装连续百分比"}
+  imagery: {decision: "只保留轻量状态点和时间图标", rationale: "不用装饰图挤占空间"}
+  data: {decision: "源计划数组位置显示第N步，下一pending步，缺失明示", rationale: "不从工具数量或助手文字猜进度"}
+  time: {decision: "5秒重读，120秒失鲜，来源报告时间不随重读更新", rationale: "定时读取不等于工作在推进"}
+signature_expression:
+  dimension: "data"
+  expression: "具体步骤与分段条紧贴每项工作对象"
+  relation_to_content: "一眼了解正在做什么和接下来做什么"
+adapter:
+  type: app
+  spatial_model: "原生深色窗口加紧凑三卡分页"
+  temporal_model: "开始进入、变更更新、结束移出、失鲜提示"
+  critical_states: ["0/1/3/4任务", "结束后页码回退", "失联", "无计划", "未接入", "200%字号"]
+  required_viewports_or_outputs: ["390x560", "380x500", "320x560字号200%", "原生Windows待测"]
+verification:
+  machine_checks: ["报告生命周期和隔离", "原生白名单", "浏览器筛选/分页/步骤", "回归构建"]
+  real_medium_checks: ["生产HTML浏览器截图", "真实试点报告回读", "原生截图无法取得须明确"]
+  human_judgment_questions: ["当前步骤是否足够直观且不占屏幕"]
+  status: checked
+  evidence_paths: ["shell/delivery/evidence/report-v9.md", "shell/output/playwright/agent-report-three-partitions-v1.png", "shell/delivery/evidence/pilot-v9-active-seq5.json", "shell/delivery/evidence/pilot-v9-ended-seq6.json"]

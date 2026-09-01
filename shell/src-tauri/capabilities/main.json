@@ -1,0 +1,7 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "main-readonly",
+  "description": "Only the local main window may read its snapshot, hide itself, or request opening an existing Codex task.",
+  "windows": ["main"],
+  "permissions": ["allow-fetch-task-snapshot", "allow-hide-dock", "allow-open-codex-task"]
+}
